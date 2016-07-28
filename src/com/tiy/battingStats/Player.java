@@ -1,17 +1,11 @@
 package com.tiy.battingStats;
 
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 public class Player
 {	
 	private String playerName;
 	private ArrayList<Integer> atBatResults = new ArrayList<>();
-	private static Scanner userInput = new Scanner(System.in);
-	
-	
-	
 	public Player(String playerName)
 	{
 		this.playerName = playerName;
@@ -106,24 +100,5 @@ public class Player
 		
 		return sluggingPercentage;
 	}
-	
-	public static void main(String[] args)
-	{
 		
-		Player playerOne = new Player("John");
-		
-		Random random = new Random();
-		
-		for(int i = 0; i < 5; i++)
-		{
-			playerOne.addAtBatResult(random.nextInt(5));
-		}
-		
-		playerOne.atBatResults.forEach(result->System.out.println(result));
-		
-		System.out.format("%.3f\n",playerOne.getBattingAverage());
-		System.out.format("%.3f\n",playerOne.getSluggingPercentage());
-		
-	}
-
 }

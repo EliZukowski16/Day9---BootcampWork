@@ -21,6 +21,13 @@ public class PlayerStats
 		return (listOfPlayers.size() - 1);
 	}
 	
+	public Integer timesAtBat(Integer rosterPosition)
+	{
+		System.out.format("Please enter the number of times %s batted:\n", listOfPlayers.get(rosterPosition).getName());
+		return userInput.nextInt();
+	}
+	
+		
 	public static void main(String[] args)
 	{
 		PlayerStats myRoster = new PlayerStats();
@@ -34,6 +41,13 @@ public class PlayerStats
 				Integer rosterPosition = myRoster.addPlayer();
 				
 				System.out.println("");
+				
+				Integer timesAtBat = myRoster.timesAtBat(rosterPosition);
+				
+				for(int i = 0; i < timesAtBat; i++)
+				{
+					myRoster.addBattingResult(rosterPosition);
+				}
 			}
 			else if(userInput.nextLine().equalsIgnoreCase("N"))
 			{

@@ -23,8 +23,23 @@ public class PlayerStats
 	
 	public Integer timesAtBat(Integer rosterPosition)
 	{
-		System.out.format("Please enter the number of times %s batted:\n", listOfPlayers.get(rosterPosition).getName());
-		return userInput.nextInt();
+		boolean notValidResult = true;
+		Integer timesAtBat = 0;
+		while(notValidResult)
+		{
+			System.out.format("Please enter the number of times %s batted:\n", listOfPlayers.get(rosterPosition).getName());
+			if(userInput.hasNextInt())
+			{
+				timesAtBat =  userInput.nextInt();
+				notValidResult = false;
+			}
+			else
+			{
+				userInput.next();
+			}
+		}
+		
+		return timesAtBat;
 	}
 	
 	public void addBattingResult(Integer rosterPosition, Integer atBatNumber)
@@ -35,20 +50,27 @@ public class PlayerStats
 		{
 			System.out.println("Batting results are classified as:");
 			System.out.println("No Bases - 0\n1st Base - 1\n2nd Base - 2\n3rd Base - 3\nHome Run - 4");
-			System.out.format("Enter the batting result for %s\'s %d time at bat:", listOfPlayers.get(rosterPosition).getName(), (atBatNumber + 1));
+			System.out.format("Enter the batting result for %s\'s %d time at bat:\n", listOfPlayers.get(rosterPosition).getName(), (atBatNumber + 1));
 			
-			atBatResult = userInput.nextInt();
-			
-			switch(atBatResult)
+			if(userInput.hasNextInt())
 			{
-			case 0:
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-				listOfPlayers.get(rosterPosition).addAtBatResult(atBatResult);
-				notValidResult = false;
-				break;
+				atBatResult = userInput.nextInt();
+
+				switch(atBatResult)
+				{
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+					listOfPlayers.get(rosterPosition).addAtBatResult(atBatResult);
+					notValidResult = false;
+					break;
+				}
+			}
+			else
+			{
+				userInput.next();
 			}
 			
 		}

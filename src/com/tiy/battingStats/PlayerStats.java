@@ -24,14 +24,23 @@ public class PlayerStats
 	public Integer timesAtBat(Integer rosterPosition)
 	{
 		boolean notValidResult = true;
+		String currentPlayer = listOfPlayers.get(rosterPosition).getName();
 		Integer timesAtBat = 0;
 		while(notValidResult)
 		{
-			System.out.format("Please enter the number of times %s batted:\n", listOfPlayers.get(rosterPosition).getName());
+			System.out.format("Please enter the number of times %s batted:\n", currentPlayer);
 			if(userInput.hasNextInt())
 			{
 				timesAtBat =  userInput.nextInt();
-				notValidResult = false;
+				
+				if(timesAtBat > 0)
+				{
+					notValidResult = false;
+				}
+				else if(timesAtBat <= 0)
+				{
+					System.out.format("The number of times %s batted must be greater than 0\n", currentPlayer );
+				}
 			}
 			else
 			{

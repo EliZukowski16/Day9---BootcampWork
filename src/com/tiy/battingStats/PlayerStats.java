@@ -27,7 +27,33 @@ public class PlayerStats
 		return userInput.nextInt();
 	}
 	
-		
+	public void addBattingResult(Integer rosterPosition, Integer atBatNumber)
+	{
+		boolean notValidResult = true;
+		Integer atBatResult;
+		while(notValidResult)
+		{
+			System.out.println("Batting results are classified as:");
+			System.out.println("No Bases - 0\n1st Base - 1\n2nd Base - 2\n3rd Base - 3\nHome Run - 4");
+			System.out.format("Enter the batting result for %s\'s %d time at bat:", listOfPlayers.get(rosterPosition).getName(), (atBatNumber + 1));
+			
+			atBatResult = userInput.nextInt();
+			
+			switch(atBatResult)
+			{
+			case 0:
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+				listOfPlayers.get(rosterPosition).addAtBatResult(atBatResult);
+				notValidResult = false;
+				break;
+			}
+			
+		}
+	}
+	
 	public static void main(String[] args)
 	{
 		PlayerStats myRoster = new PlayerStats();
@@ -46,7 +72,7 @@ public class PlayerStats
 				
 				for(int i = 0; i < timesAtBat; i++)
 				{
-					myRoster.addBattingResult(rosterPosition);
+					myRoster.addBattingResult(rosterPosition, i);
 				}
 			}
 			else if(userInput.nextLine().equalsIgnoreCase("N"))

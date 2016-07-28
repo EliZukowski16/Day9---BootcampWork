@@ -96,6 +96,7 @@ public class PlayerStats
 			if(userInput.nextLine().equalsIgnoreCase("Y"))
 			{
 				Integer rosterPosition = myRoster.addPlayer();
+				String playerName = myRoster.listOfPlayers.get(rosterPosition).getName();
 				
 				System.out.println("");
 				
@@ -105,6 +106,13 @@ public class PlayerStats
 				{
 					myRoster.addBattingResult(rosterPosition, i);
 				}
+				
+				Float battingAverage = myRoster.listOfPlayers.get(rosterPosition).getBattingAverage();
+				Float sluggingPercentage = myRoster.listOfPlayers.get(rosterPosition).getSluggingPercentage();
+				
+				System.out.format("%s\'s batting average is: %2.3f\n", playerName, battingAverage);
+				System.out.format("%s\'s slugging percentage is: %2.3f\n\n", playerName, sluggingPercentage);
+				
 			}
 			else if(userInput.nextLine().equalsIgnoreCase("N"))
 			{
